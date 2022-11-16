@@ -1,5 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
+const fs = require('fs');
+const generateMarkdown = require('./util/generateMarkdown');
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -66,9 +68,35 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+// function writeToFile(fileName, data) {}
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+    inquirer.prompt(questions).then((data) => {
+        data.getLicense = getLicense(data.license)
+        fs.writeFile('generatedREADME/README.md', generateMarkdown(data), (err) => {
+            if (err) {
+                return console.log(err)
+            }
+            return console.log('README Generated!')
+        })
+    })
+}
+
+function getLicense(value){
+    switch(value) {
+        case 'Apache':
+        return '![License: Apache](https://img.shields.io/badge/license-Apache%202.0-yellow)';
+ 
+        case 'GNU GPLv3':
+        return '![License: GNU GPLv3](https://img.shields.io/badge/license-GNU%20GPL-green)';
+       
+        case 'MIT':
+        return '![License: MIT](https://img.shields.io/badge/license-MIT-blue)';
+ 
+        case 'None':
+        return '![License: None](https://img.shields.io/badge/license-none-orange)';        
+    }
+}
 
 init();
