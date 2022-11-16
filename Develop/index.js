@@ -33,7 +33,7 @@ const questions = [
   {
     name: 'contribution',
     type: 'input',
-    message: ':List any collaborators of your project.',
+    message: 'List any collaborators of your project.',
   },
 // test instructions
 {

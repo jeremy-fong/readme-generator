@@ -40,7 +40,7 @@ function generateMarkdown(data) {
   ${data.getLicense}
  
   ## Contributions
-  ${data.contributions}
+  ${data.contribution}
  
   ## Tests
   ${data.test}
